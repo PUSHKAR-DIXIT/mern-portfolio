@@ -11,12 +11,11 @@
   z-index: 1000;
 }
 
-/* LEFT LINKS */
+/* LEFT LINKS (DESKTOP) */
 .nav-left {
   display: flex;
   align-items: center;
   gap: 14px;
-  flex-wrap: nowrap;
 }
 
 .nav-item {
@@ -32,7 +31,7 @@
 .nav-item:hover,
 .nav-item.active {
   background: #2563eb;
-  color: white;
+  color: #fff;
 }
 
 /* CV BUTTON */
@@ -47,27 +46,40 @@
   white-space: nowrap;
 }
 
-@media (max-width: 768px) {
-  .hamburger {
-    display: flex;
-  }
+/* HAMBURGER (DESKTOP OFF) */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+}
 
-  .nav-links {
+.hamburger span {
+  height: 3px;
+  width: 26px;
+  background: #fff;
+  margin: 4px 0;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .nav-left {
     position: absolute;
-    top: 60px;
+    top: 70px;
     left: 0;
     width: 100%;
-    background: #111;
+    background: #020617;
     flex-direction: column;
     align-items: center;
+    gap: 10px;
+    padding: 16px 0;
     display: none;
   }
 
-  .nav-links.open {
+  .nav-left.open {
     display: flex;
   }
 
-  .nav-links li {
-    padding: 12px 0;
+  .hamburger {
+    display: flex;
   }
 }
