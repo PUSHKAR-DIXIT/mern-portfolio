@@ -29,20 +29,6 @@
   transition: 0.3s;
 }
 
-/* hamburger */
-.hamburger {
-  display: none;
-  flex-direction: column;
-  cursor: pointer;
-}
-
-.hamburger span {
-  height: 3px;
-  width: 25px;
-  background: #fff;
-  margin: 4px 0;
-}
-
 .nav-item:hover,
 .nav-item.active {
   background: #2563eb;
