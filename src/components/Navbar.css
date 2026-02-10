@@ -2,39 +2,31 @@
   position: fixed;
   top: 0;
   width: 100%;
-  background: #111;
+  height: 70px;
+  background: #020617;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
   z-index: 1000;
 }
 
-.nav-container {
+/* LEFT LINKS */
+.nav-left {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 15px 20px;
+  gap: 14px;
+  flex-wrap: nowrap;
 }
 
-.nav-logo {
-  color: #fff;
-  font-size: 20px;
-  font-weight: bold;
-}
-
-/* links */
-.nav-links {
-  list-style: none;
-  display: flex;
-  gap: 25px;
-}
-
-.nav-links a {
-  color: #fff;
+.nav-item {
+  padding: 8px 14px;
+  border-radius: 8px;
+  color: #e5e7eb;
   text-decoration: none;
-  font-size: 16px;
-}
-
-.nav-links a.active {
-  color: #00bfff;
-  font-weight: bold;
+  font-size: 15px;
+  white-space: nowrap;
+  transition: 0.3s;
 }
 
 /* hamburger */
@@ -51,7 +43,24 @@
   margin: 4px 0;
 }
 
-/* mobile */
+.nav-item:hover,
+.nav-item.active {
+  background: #2563eb;
+  color: white;
+}
+
+/* CV BUTTON */
+.resume-btn {
+  padding: 8px 16px;
+  background: #38bdf8;
+  color: #020617;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
 @media (max-width: 768px) {
   .hamburger {
     display: flex;
@@ -76,4 +85,3 @@
     padding: 12px 0;
   }
 }
-
