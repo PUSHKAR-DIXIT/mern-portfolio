@@ -7,14 +7,11 @@ function Navbar() {
   return (
     <nav className="navbar">
       <div className="nav-container">
-        {/* Left: Name */}
+        {/* Left Name */}
         <div className="nav-logo">Pushkar</div>
 
         {/* Hamburger */}
-        <div
-          className={`hamburger ${open ? "active" : ""}`}
-          onClick={() => setOpen(!open)}
-        >
+        <div className="hamburger" onClick={() => setOpen(!open)}>
           <span></span>
           <span></span>
           <span></span>
