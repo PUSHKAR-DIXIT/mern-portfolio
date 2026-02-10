@@ -1,31 +1,59 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./Navbar.css";
 
 function Navbar() {
   const [open, setOpen] = useState(false);
+  const [active, setActive] = useState("home");
+
+  useEffect(() => {
+    const sections = document.querySelectorAll("section");
+
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            setActive(entry.target.id);
+          }
+        });
+      },
+      { threshold: 0.6 }
+    );
+
+    sections.forEach(sec => observer.observe(sec));
+    return () => observer.disconnect();
+  }, []);
+
+  const link = (id, label) => (
+    <li>
+      <a
+        href={`#${id}`}
+        className={active === id ? "active" : ""}
+        onClick={() => setOpen(false)}
+      >
+        {label}
+      </a>
+    </li>
+  );
 
   return (
     <nav className="navbar">
       <div className="nav-container">
-        {/* Left Name */}
         <div className="nav-logo">Pushkar</div>
 
-        {/* Hamburger */}
         <div className="hamburger" onClick={() => setOpen(!open)}>
           <span></span>
           <span></span>
           <span></span>
         </div>
 
-        {/* Links */}
         <ul className={`nav-links ${open ? "open" : ""}`}>
-          <li><a href="#home" onClick={() => setOpen(false)}>Home</a></li>
-          <li><a href="#about" onClick={() => setOpen(false)}>About</a></li>
-          <li><a href="#education" onClick={() => setOpen(false)}>Education</a></li>
-          <li><a href="#skills" onClick={() => setOpen(false)}>Skills</a></li>
-          <li><a href="#projects" onClick={() => setOpen(false)}>Projects</a></li>
-          <li><a href="#certificates" onClick={() => setOpen(false)}>Certificates</a></li>
-          <li><a href="#contact" onClick={() => setOpen(false)}>Contact</a></li>
+          {link("home", "Home")}
+          {link("about", "About")}
+          {link("education", "Education")}
+          {link("skills", "Skills")}
+          {link("projects", "Projects")}
+          {link("certificates", "Certificates")}
+          {link("contact", "Contact")}
         </ul>
       </div>
     </nav>
