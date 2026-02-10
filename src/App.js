@@ -14,15 +14,20 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 
 function App() {
-  const [profile, setProfile] = useState(null);
+  // const [profile, setProfile] = useState(null);
 
-  useEffect(() => {
-    axios.get("http://localhost:5000/api/profile")
-      .then(res => setProfile(res.data))
-      .catch(err => console.log(err));
-  }, []);
+  // useEffect(() => {
+  //   axios.get("http://localhost:5000/api/profile")
+  //     .then(res => setProfile(res.data))
+  //     .catch(err => console.log(err));
+  // }, []);
 
-  if (!profile) return <p>Loading...</p>;
+  // if (!profile) return <p>Loading...</p>;
+  const profile = {
+  name: "Pushkar Dixit",
+  role: "MERN Stack Developer",
+  email: "your@email.com"
+};
 
   return (
     <>
