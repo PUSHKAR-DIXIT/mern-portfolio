@@ -1,0 +1,57 @@
+.Education {
+  min-height: 100vh;
+  padding: 80px 60px;
+  background: #020617;
+  color: #38bdf8;
+}
+
+.Education h2 {
+  text-align: center;
+  font-size: 36px;
+  margin-bottom: 50px;
+  
+}
+
+.education-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 30px;
+}
+
+.edu-card {
+  background: #020617;
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  border-radius: 18px;
+  padding: 30px;
+  transition: all 0.3s ease;
+}
+
+.edu-card:hover {
+  transform: translateY(-6px);
+  border-color: #38bdf8;
+  box-shadow: 0 12px 30px rgba(56, 189, 248, 0.18);
+}
+
+.edu-card h3 {
+  font-size: 22px;
+  color: #38bdf8;
+  margin-bottom: 10px;
+}
+
+.edu-college {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+
+.edu-year {
+  font-size: 14px;
+  color: #94a3b8;
+  margin-bottom: 14px;
+}
+
+.edu-desc {
+  font-size: 15px;
+  line-height: 1.7;
+  color: #cbd5f5;
+}

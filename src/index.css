@@ -1,0 +1,51 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #020617; /* same as navbar */
+}
+
+html , body{
+  width: 100%;
+ 
+  overflow-x: hidden;
+
+}
+
+body {
+  
+  font-family: "Segoe UI", sans-serif;
+  transition: background 0.3s ease, color 0.3s ease;
+
+}
+
+.light {
+  background: #f9fafb;
+  color: #111;
+}
+
+.dark {
+  background: #0f172a;
+  color: #e5e7eb;
+}
+
+button {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+
+}
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s ease;
+}
+
+.reveal.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+

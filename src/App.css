@@ -1,0 +1,25 @@
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s ease;
+}
+
+.reveal.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+html {
+  scroll-behavior: smooth;
+}
+
+.section {
+  min-height: 100vh;
+  padding: 120px 40px;
+  background: #111;
+  color: white;
+}
+body {
+  padding-top: 80px;
+}

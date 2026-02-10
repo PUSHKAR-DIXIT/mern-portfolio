@@ -1,0 +1,56 @@
+.cert-section {
+  padding: 80px 8%;
+  background: #020617;
+  color: #38bdf8;
+}
+
+.cert-section h2 {
+  margin-bottom: 30px;
+}
+
+.cert-row {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+
+  /* scrollbar hide */
+  scrollbar-width: none;      /* Firefox */
+  -ms-overflow-style: none;   /* IE / Edge */
+}
+
+.cert-row::-webkit-scrollbar {
+  display: none;              /* Chrome / Safari */
+}
+
+
+.cert-row::-webkit-scrollbar {
+  height: 6px;
+}
+
+.cert-row::-webkit-scrollbar-thumb {
+  background: #38bdf8;
+}
+
+.cert-card {
+  min-width: 260px;
+  background: #0f172a;
+  border-radius: 12px;
+  padding: 15px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.cert-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(56,189,248,0.5);
+}
+
+.cert-card img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.cert-card p {
+  margin-top: 10px;
+  text-align: center;
+}
