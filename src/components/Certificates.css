@@ -1,28 +1,43 @@
 .cert-section {
-  padding: 80px 8%;
+  padding: 100px 8%;
   background: #020617;
   color: #38bdf8;
+  text-align: center;
 }
 
+/* Heading Animation */
 .cert-section h2 {
-  margin-bottom: 30px;
+  font-size: 36px;
+  margin-bottom: 50px;
+  position: relative;
+  display: inline-block;
 }
 
+.cert-section h2::after {
+  content: "";
+  width: 60%;
+  height: 3px;
+  background: #38bdf8;
+  position: absolute;
+  left: 20%;
+  bottom: -10px;
+  border-radius: 10px;
+  animation: lineGrow 1s ease forwards;
+}
+
+@keyframes lineGrow {
+  from { width: 0; left: 50%; }
+  to { width: 60%; left: 20%; }
+}
+
+/* Horizontal Scroll */
 .cert-row {
   display: flex;
-  gap: 20px;
+  gap: 25px;
   overflow-x: auto;
-  padding-bottom: 10px;
-
-  /* scrollbar hide */
-  scrollbar-width: none;      /* Firefox */
-  -ms-overflow-style: none;   /* IE / Edge */
+  padding-bottom: 15px;
+  scroll-behavior: smooth;
 }
-
-.cert-row::-webkit-scrollbar {
-  display: none;              /* Chrome / Safari */
-}
-
 
 .cert-row::-webkit-scrollbar {
   height: 6px;
@@ -30,27 +45,81 @@
 
 .cert-row::-webkit-scrollbar-thumb {
   background: #38bdf8;
+  border-radius: 10px;
 }
 
+/* Card Styling */
 .cert-card {
-  min-width: 260px;
-  background: #0f172a;
-  border-radius: 12px;
-  padding: 15px;
-  transition: transform 0.3s, box-shadow 0.3s;
+  min-width: 280px;
+  background: linear-gradient(145deg, #0f172a, #0b1220);
+  border-radius: 18px;
+  padding: 18px;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+/* Glow Border Effect */
+.cert-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  padding: 2px;
+  background: linear-gradient(45deg, #38bdf8, transparent, #38bdf8);
+  -webkit-mask: 
+    linear-gradient(#000 0 0) content-box, 
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: 0.4s;
+}
+
+.cert-card:hover::before {
+  opacity: 1;
 }
 
 .cert-card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 20px rgba(56,189,248,0.5);
+  transform: translateY(-10px) scale(1.04);
+  box-shadow: 0 20px 40px rgba(56,189,248,0.35);
 }
 
+/* Image */
 .cert-card img {
   width: 100%;
-  border-radius: 8px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 12px;
+  transition: transform 0.4s ease;
 }
 
+.cert-card:hover img {
+  transform: scale(1.08);
+}
+
+/* Title */
 .cert-card p {
-  margin-top: 10px;
-  text-align: center;
+  margin-top: 14px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #e2e8f0;
+}
+
+/* Fade In Animation */
+.cert-card {
+  animation: fadeUp 0.8s ease forwards;
+  opacity: 0;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

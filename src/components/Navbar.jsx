@@ -9,8 +9,8 @@ function Navbar() {
     const sections = document.querySelectorAll("section");
 
     const observer = new IntersectionObserver(
-      entries => {
-        entries.forEach(entry => {
+      (entries) => {
+        entries.forEach((entry) => {
           if (entry.isIntersecting) {
             setActive(entry.target.id);
           }
@@ -19,7 +19,7 @@ function Navbar() {
       { threshold: 0.6 }
     );
 
-    sections.forEach(section => observer.observe(section));
+    sections.forEach((section) => observer.observe(section));
     return () => observer.disconnect();
   }, []);
 
@@ -35,8 +35,22 @@ function Navbar() {
 
   return (
     <nav className="navbar">
-      {/* LEFT LINKS */}
-      <div className={`nav-left ${open ? "open" : ""}`}>
+
+      {/* LEFT SIDE (Hamburger + Name) */}
+      <div className="nav-left-section">
+        <div className="hamburger" onClick={() => setOpen(!open)}>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+
+        <div className="logo">
+          Pushkar Dixit
+        </div>
+      </div>
+
+      {/* RIGHT SIDE LINKS */}
+      <div className={`nav-right ${open ? "open" : ""}`}>
         <NavLink id="home" label="Home" />
         <NavLink id="about" label="About" />
         <NavLink id="education" label="Education" />
@@ -47,12 +61,6 @@ function Navbar() {
         <a href="/resume.pdf" className="resume-btn">Resume</a>
       </div>
 
-      {/* HAMBURGER */}
-      <div className="hamburger" onClick={() => setOpen(!open)}>
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
     </nav>
   );
 }

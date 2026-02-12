@@ -1,6 +1,24 @@
+import { useEffect, useRef, useState } from "react";
 import "./Projects.css";
 
 function Projects() {
+  const sectionRef = useRef(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
+
   const projects = [
     {
       title: "Simon Game",
@@ -8,44 +26,41 @@ function Projects() {
       solution:
         "Built a browser-based Simon Game with sound, levels, and restart logic.",
       tech: ["HTML", "CSS", "JavaScript"],
-      github: "https://github.com/PUSHKAR-DIXIT/simon-game",
-      live: "#"
+      github: "https://github.com/PUSHKAR-DIXIT/simon-game"
     },
     {
       title: "Complexity Analyzer",
-      problem:
-        "Understanding time complexity is difficult for beginners.",
+      problem: "Understanding time complexity is difficult for beginners.",
       solution:
         "Created a tool that explains algorithm complexity with examples.",
       tech: ["Java", "DSA"],
-      github: "https://github.com/PUSHKAR-DIXIT/Complexity-Analyzer",
-      live: "#"
+      github: "https://github.com/PUSHKAR-DIXIT/Complexity-Analyzer"
     },
     {
       title: "MERN Portfolio",
-      problem:
-        "Static portfolios don’t scale or store dynamic data.",
+      problem: "Static portfolios don’t scale or store dynamic data.",
       solution:
-        "Built a full MERN portfolio with MongoDB, certificate uploads, and admin control.",
+        "Built a full MERN portfolio with MongoDB and admin control.",
       tech: ["React", "Node", "Express", "MongoDB"],
-      github: "https://github.com/your-github/mern-portfolio",
-      live: "#"
+      github: "https://github.com/your-github/mern-portfolio"
     },
     {
-  title: "Spotify Clone",
-  problem:
-    "Learning frontend layout and UI design is difficult without real-world practice projects.",
-  solution:
-    "Built a responsive Spotify-inspired music streaming UI using pure HTML and CSS, focusing on layout, styling, and user experience.",
-  tech: ["HTML", "CSS", "Responsive Design"],
-  github: "https://github.com/PUSHKAR-DIXIT/spotify-clone",
-  live: ""
-}
-
+      title: "Spotify Clone",
+      problem:
+        "Learning frontend layout and UI design needs real-world practice.",
+      solution:
+        "Built a responsive Spotify-inspired UI using HTML & CSS.",
+      tech: ["HTML", "CSS", "Responsive Design"],
+      github: "https://github.com/PUSHKAR-DIXIT/spotify-clone"
+    }
   ];
 
   return (
-    <section id="projects" className="projects">
+    <section
+      id="projects"
+      ref={sectionRef}
+      className={`projects ${visible ? "show" : ""}`}
+    >
       <h2>Projects</h2>
 
       <div className="project-grid">
@@ -66,11 +81,6 @@ function Projects() {
               <a href={p.github} target="_blank" rel="noreferrer">
                 GitHub
               </a>
-              {/* {p.live !== "#" && (
-                <a href={p.live} target="_blank" rel="noreferrer">
-                  Live Demo
-                </a>
-              )} */}
             </div>
           </div>
         ))}
@@ -80,3 +90,4 @@ function Projects() {
 }
 
 export default Projects;
+

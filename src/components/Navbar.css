@@ -11,8 +11,21 @@
   z-index: 1000;
 }
 
-/* LEFT LINKS (DESKTOP) */
-.nav-left {
+/* LEFT SECTION (Hamburger + Name) */
+.nav-left-section {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.logo {
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* RIGHT SIDE LINKS (Desktop) */
+.nav-right {
   display: flex;
   align-items: center;
   gap: 14px;
@@ -34,7 +47,7 @@
   color: #fff;
 }
 
-/* CV BUTTON */
+/* Resume Button */
 .resume-btn {
   padding: 8px 16px;
   background: #38bdf8;
@@ -46,7 +59,7 @@
   white-space: nowrap;
 }
 
-/* HAMBURGER (DESKTOP OFF) */
+/* HAMBURGER (Hidden in Desktop) */
 .hamburger {
   display: none;
   flex-direction: column;
@@ -60,9 +73,14 @@
   margin: 4px 0;
 }
 
-/* MOBILE */
+/* ================= MOBILE VIEW ================= */
 @media (max-width: 768px) {
-  .nav-left {
+
+  .hamburger {
+    display: flex;
+  }
+
+  .nav-right {
     position: absolute;
     top: 70px;
     left: 0;
@@ -70,16 +88,12 @@
     background: #020617;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
-    padding: 16px 0;
+    gap: 12px;
+    padding: 20px 0;
     display: none;
   }
 
-  .nav-left.open {
-    display: flex;
-  }
-
-  .hamburger {
+  .nav-right.open {
     display: flex;
   }
 }

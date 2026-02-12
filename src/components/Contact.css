@@ -1,73 +1,163 @@
 .contact {
-  padding: 80px 10%;
-  background: #020617;
+  padding: 100px 10%;
+  background: linear-gradient(135deg, #020617, #0f172a);
   color: #38bdf8;
+}
+
+.contact-title {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 50px;
+  animation: fadeDown 0.8s ease forwards;
 }
 
 .contact-wrapper {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 40px;
-  margin-top: 30px;
 }
 
+/* ================= FORM ================= */
+
 .contact-form {
-  background: #0f172a;
-  padding: 30px;
-  border-radius: 12px;
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(10px);
+  padding: 35px;
+  border-radius: 16px;
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 18px;
+  box-shadow: 0 0 30px rgba(56, 189, 248, 0.1);
+  animation: fadeLeft 1s ease forwards;
 }
 
 .contact-form input,
 .contact-form textarea {
   background: #020617;
   border: 1px solid #1e293b;
-  padding: 12px;
+  padding: 14px;
   color: #e5e7eb;
-  border-radius: 6px;
+  border-radius: 8px;
   outline: none;
+  transition: 0.3s;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: #38bdf8;
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.4);
 }
 
 .contact-form textarea {
   resize: none;
-  height: 120px;
+  height: 130px;
 }
 
 .contact-form button {
   background: #38bdf8;
   color: #020617;
   border: none;
-  padding: 12px;
-  border-radius: 8px;
+  padding: 14px;
+  border-radius: 10px;
   cursor: pointer;
   font-weight: 600;
+  transition: 0.3s;
 }
 
+.contact-form button:hover {
+  background: #0ea5e9;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(56, 189, 248, 0.4);
+}
+
+/* ================= INFO ================= */
+
 .contact-info {
-  background: #0f172a;
-  padding: 30px;
-  border-radius: 12px;
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(10px);
+  padding: 35px;
+  border-radius: 16px;
+  box-shadow: 0 0 30px rgba(56, 189, 248, 0.1);
+  animation: fadeRight 1s ease forwards;
 }
 
 .contact-info h3 {
-  margin-bottom: 20px;
+  margin-bottom: 25px;
 }
 
 .contact-info p {
-  margin-bottom: 10px;
+  margin-bottom: 12px;
   color: #cbd5f5;
 }
 
 .contact-links {
-  margin-top: 20px;
+  margin-top: 25px;
   display: flex;
-  gap: 15px;
+  gap: 20px;
 }
 
 .contact-links a {
   color: #38bdf8;
   text-decoration: none;
   font-weight: 500;
+  position: relative;
+  transition: 0.3s;
+}
+
+.contact-links a::after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  background: #38bdf8;
+  bottom: -4px;
+  left: 0;
+  transition: 0.3s;
+}
+
+.contact-links a:hover::after {
+  width: 100%;
+}
+
+/* ================= ANIMATIONS ================= */
+
+@keyframes fadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeRight {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 900px) {
+  .contact-wrapper {
+    grid-template-columns: 1fr;
+  }
 }

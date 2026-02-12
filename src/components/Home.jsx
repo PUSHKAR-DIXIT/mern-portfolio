@@ -1,22 +1,40 @@
+import { useEffect, useRef } from "react";
 import profileImg from "../assets/profile.jpg";
 import "./Home.css";
 
 function Home() {
+  const sectionRef = useRef();
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    observer.observe(sectionRef.current);
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section id="home" className="home">
+    <section ref={sectionRef} id="home" className="home hidden">
       <div className="home-left">
-      <h1>
-  Hi, I'm <span>Pushkar Dixit</span>
-</h1>
+        <h1>
+          Hi, I'm <span>Pushkar Dixit</span>
+        </h1>
 
-<h2>B.Tech CSE Student | MERN Stack Developer</h2>
+        <h2>B.Tech CSE Student | MERN Stack Developer</h2>
 
-<p>
-  A passionate Computer Science student focused on building modern,
-  responsive and user-centric web applications. I love turning ideas
-  into real products using React, Node.js and MongoDB.
-</p>
-
+        <p>
+          A passionate Computer Science student focused on building modern,
+          responsive and user-centric web applications.
+        </p>
 
         <div className="home-buttons">
           <a href="#contact" className="btn primary">Hire Me</a>
