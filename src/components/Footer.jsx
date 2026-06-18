@@ -1,18 +1,50 @@
+import { useEffect, useRef, useState } from "react";
 import "./Footer.css";
 
 function Footer() {
+  const footerRef = useRef(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) setVisible(true);
+      },
+      { threshold: 0.1 }
+    );
+    if (footerRef.current) observer.observe(footerRef.current);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <footer className="footer">
+    <footer
+      ref={footerRef}
+      className={"footer" + (visible ? " show" : "")}
+    >
+      <div className="footer-glow"></div>
+
       <div className="footer-container">
+
         {/* LEFT */}
         <div className="footer-left">
-          <h3>Pushkar Dixit</h3>
-          <p>MERN Stack Developer</p>
+          <h3>
+            <span className="footer-logo-first">Pushkar</span>
+            <span className="footer-logo-last"> Dixit</span>
+          </h3>
+          <p className="footer-role">MERN Stack Developer</p>
+          <p className="footer-tagline">Building modern web experiences with clean code.</p>
+          <div className="footer-status">
+            <span className="status-dot"></span> Open to Opportunities
+          </div>
         </div>
 
         {/* CENTER */}
         <div className="footer-center">
+          <p className="footer-heading">Quick Links</p>
+          <a href="#home">Home</a>
           <a href="#about">About</a>
+          <a href="#education">Education</a>
+          <a href="#experience">Experience</a>
           <a href="#skills">Skills</a>
           <a href="#projects">Projects</a>
           <a href="#certificates">Certificates</a>
@@ -21,28 +53,26 @@ function Footer() {
 
         {/* RIGHT */}
         <div className="footer-right">
-          <a
-            href="https://github.com/yourusername"
-            target="_blank"
-            rel="noreferrer"
-          >
-            GitHub
+          <p className="footer-heading">Connect</p>
+          <a href="https://github.com/Pushkar-DIXIT" target="_blank" rel="noreferrer">
+            🐙 GitHub
           </a>
-
-          <a
-            href="https://www.linkedin.com/in/pushkar-dixit-502bb4"
-            target="_blank"
-            rel="noreferrer"
-          >
-            LinkedIn
+          <a href="https://www.linkedin.com/in/pushkar-dixit-502bb4327" target="_blank" rel="noreferrer">
+            💼 LinkedIn
           </a>
-
-          <a href="mailto:your@email.com">Email</a>
+          <a href="mailto:pushkardixit561@gmail.com">
+            ✉️ Email
+          </a>
+          <a href="/resume.pdf" target="_blank" rel="noreferrer">
+            📄 Resume
+          </a>
         </div>
+
       </div>
 
       <div className="footer-bottom">
-        © {new Date().getFullYear()} Pushkar Dixit. All rights reserved.
+        <p>© {new Date().getFullYear()} Pushkar Dixit. All rights reserved.</p>
+        <p className="footer-credit">Made with ❤️ using React</p>
       </div>
     </footer>
   );

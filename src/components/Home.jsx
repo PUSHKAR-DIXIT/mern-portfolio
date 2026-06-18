@@ -6,45 +6,62 @@ function Home() {
   const sectionRef = useRef();
 
   useEffect(() => {
+    const el = sectionRef.current;
     const observer = new IntersectionObserver(
-      entries => {
-        entries.forEach(entry => {
+      (entries) => {
+        entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add("show");
           }
         });
       },
-      { threshold: 0.3 }
+      { threshold: 0.2 }
     );
-
-    observer.observe(sectionRef.current);
-
+    if (el) observer.observe(el);
     return () => observer.disconnect();
   }, []);
 
   return (
     <section ref={sectionRef} id="home" className="home hidden">
+
       <div className="home-left">
-        <h1>
-          Hi, I'm <span>Pushkar Dixit</span>
-        </h1>
-
-        <h2>B.Tech CSE Student | MERN Stack Developer</h2>
-
-        <p>
-          A passionate Computer Science student focused on building modern,
-          responsive and user-centric web applications.
+        <p className="home-tag">👋 Welcome to my Portfolio</p>
+        <h1>Hi, I'm <span>Pushkar Dixit</span></h1>
+        <h2>🎓 B.Tech CSE  &nbsp;|&nbsp; 💻 MERN Stack Developer</h2>
+        <p className="home-desc">
+          Passionate about building modern, fast and responsive web apps. 
+          I love turning ideas into real products using React, Node.js and MongoDB.
         </p>
 
+        <div className="home-stats">
+          <div className="stat">
+            <h3>10+</h3>
+            <p>Projects</p>
+          </div>
+          <div className="stat">
+            <h3>5+</h3>
+            <p>Certificates</p>
+          </div>
+          <div className="stat">
+            <h3>1+</h3>
+            <p>Years Coding</p>
+          </div>
+        </div>
+
         <div className="home-buttons">
-          <a href="#contact" className="btn primary">Hire Me</a>
+          <a href="#contact" className="btn primary">Hire Me 🚀</a>
           <a href="#projects" className="btn outline">View Projects</a>
+          <a href="/resume.pdf" className="btn ghost" target="_blank" rel="noreferrer">Resume 📄</a>
         </div>
       </div>
 
       <div className="home-right">
-        <img src={profileImg} alt="Pushkar Dixit" />
+        <div className="image-ring">
+          <img src={profileImg} alt="Pushkar Dixit" />
+        </div>
+        <div className="glow-circle"></div>
       </div>
+
     </section>
   );
 }

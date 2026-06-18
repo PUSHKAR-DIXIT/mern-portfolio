@@ -1,98 +1,113 @@
+import { useEffect, useRef, useState } from "react";
+import contactImg from "../assets/contact.jpeg";
 import "./Contact.css";
 
 function Contact({ profile }) {
+  const sectionRef = useRef(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) setVisible(true);
+      },
+      { threshold: 0.1 }
+    );
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
+
   if (!profile) return null;
 
   return (
-    <section id="contact" className="contact">
+    <section
+      id="contact"
+      ref={sectionRef}
+      className={"contact" + (visible ? " show" : "")}
+    >
+      <p className="section-tag">— Get In Touch</p>
       <h2>Contact Me</h2>
+      <p className="section-sub">Have a project in mind? Let's work together!</p>
 
       <div className="contact-wrapper">
-        
-        {/* LEFT : CONTACT FORM */}
-        <form
-          className="contact-form"
-          action="https://formsubmit.co/pushkardixit561@gmail.com"
-          method="POST"
-        >
-          {/* Disable captcha */}
-          <input type="hidden" name="_captcha" value="false" />
 
-          {/* Email subject */}
-          <input
-            type="hidden"
-            name="_subject"
-            value="New Portfolio Message 🚀"
-          />
+        {/* TOP - PHOTO + INFO */}
+        <div className="contact-top">
 
-          {/* Table template */}
-          <input type="hidden" name="_template" value="table" />
-
-          {/* Redirect after submit (IMPORTANT) */}
-          <input
-            type="hidden"
-            name="_next"
-            value="https://pushkardixit-portfolio.vercel.app/"
-          />
-
-          {/* Honeypot anti-spam */}
-          <input
-            type="text"
-            name="_honey"
-            style={{ display: "none" }}
-          />
-
-          <input
-            type="text"
-            name="name"
-            placeholder="Your Name"
-            required
-          />
-
-          <input
-            type="email"
-            name="email"
-            placeholder="Your Email"
-            required
-          />
-
-          <textarea
-            name="message"
-            placeholder="Your Message"
-            required
-          />
-
-          <button type="submit">Send Message</button>
-        </form>
-
-        {/* RIGHT : CONTACT INFO */}
-        <div className="contact-info">
-          <h3>Connect With Me</h3>
-
-          <p><strong>Email:</strong> pushkardixit561@gmail.com</p>
-          <p><strong>Phone:</strong> +91-8641075968</p>
-
-          <div className="contact-links">
-            <a
-              href="https://github.com/Pushkar-DIXIT"
-              target="_blank"
-              rel="noreferrer"
-            >
-              GitHub
-            </a>
-
-            <a
-              href="https://www.linkedin.com/in/pushkar-dixit-502bb4327"
-              target="_blank"
-              rel="noreferrer"
-            >
-              LinkedIn
-            </a>
-
-            <a href={`mailto:${profile.email}`}>
-              Email Me
-            </a>
+          {/* Photo Card */}
+          <div className="contact-photo-card">
+            <div className="contact-photo-ring">
+              <img src={contactImg} alt="Pushkar Dixit" />
+            </div>
+            <div className="contact-photo-glow"></div>
+            <h3>Pushkar Dixit</h3>
+            <p className="contact-role">MERN Stack Developer</p>
+            <div className="contact-status">
+              <span className="status-dot"></span> Available for Work
+            </div>
           </div>
+
+          {/* Info Cards */}
+          <div className="contact-info-cards">
+            <div className="contact-detail-item">
+              <span className="detail-icon">📧</span>
+              <div>
+                <p className="detail-label">Email</p>
+                <p className="detail-value">pushkardixit561@gmail.com</p>
+              </div>
+            </div>
+            <div className="contact-detail-item">
+              <span className="detail-icon">📱</span>
+              <div>
+                <p className="detail-label">Phone</p>
+                <p className="detail-value">+91-8641075968</p>
+              </div>
+            </div>
+            <div className="contact-detail-item">
+              <span className="detail-icon">📍</span>
+              <div>
+                <p className="detail-label">Location</p>
+                <p className="detail-value">Gwalior, India</p>
+              </div>
+            </div>
+
+            {/* Social Links */}
+            <div className="contact-socials">
+              <a href="https://github.com/Pushkar-DIXIT" target="_blank" rel="noreferrer" className="social-btn github">
+                🐙 GitHub
+              </a>
+              <a href="https://www.linkedin.com/in/pushkar-dixit-502bb4327" target="_blank" rel="noreferrer" className="social-btn linkedin">
+                💼 LinkedIn
+              </a>
+              <a href={"mailto:" + profile.email} className="social-btn email">
+                ✉️ Email
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+        {/* BOTTOM - FORM */}
+        <div className="contact-form-wrapper">
+          <h3 className="form-title">Send Me a Message</h3>
+          <form
+            className="contact-form"
+            action="https://formsubmit.co/pushkardixit561@gmail.com"
+            method="POST"
+          >
+            <input type="hidden" name="_captcha" value="false" />
+            <input type="hidden" name="_subject" value="New Portfolio Message 🚀" />
+            <input type="hidden" name="_template" value="table" />
+            <input type="hidden" name="_next" value="https://pushkardixit-portfolio.vercel.app/" />
+            <input type="text" name="_honey" style={{ display: "none" }} />
+
+            <div className="form-row">
+              <input type="text" name="name" placeholder="Your Name" required />
+              <input type="email" name="email" placeholder="Your Email" required />
+            </div>
+            <textarea name="message" placeholder="Your Message..." required />
+            <button type="submit">Send Message 🚀</button>
+          </form>
         </div>
 
       </div>

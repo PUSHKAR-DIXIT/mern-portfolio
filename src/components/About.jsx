@@ -3,38 +3,60 @@ import aboutImg from "../assets/about.jpg";
 import "./About.css";
 
 function About() {
-  
   const sectionRef = useRef(null);
   const [visible, setVisible] = useState(false);
-  
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-        }
+        if (entry.isIntersecting) setVisible(true);
       },
-      { threshold: 0.3 }
+      { threshold: 0.2 }
     );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
+    if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
   }, []);
-  
 
   return (
-   <section id="about" className={`about ${visible ? "show" : ""}`} ref={sectionRef}>
+    <section id="about" className={"about" + (visible ? " show" : "")} ref={sectionRef}>
 
+      {/* LEFT - Image */}
       <div className="about-left">
-        <img src={aboutImg} alt="About Pushkar" />
+        <div className="about-img-wrapper">
+          <img src={aboutImg} alt="About Pushkar" />
+          <div className="about-img-glow"></div>
+        </div>
+
+        {/* Info Cards */}
+        <div className="about-cards">
+          <div className="about-card">
+            <span className="card-icon">🎓</span>
+            <div>
+              <h4>Education</h4>
+              <p>B.Tech CSE — ITM College</p>
+            </div>
+          </div>
+          <div className="about-card">
+            <span className="card-icon">💼</span>
+            <div>
+              <h4>Role</h4>
+              <p>MERN Stack Developer</p>
+            </div>
+          </div>
+          <div className="about-card">
+            <span className="card-icon">📍</span>
+            <div>
+              <h4>Location</h4>
+              <p>India</p>
+            </div>
+          </div>
+        </div>
       </div>
 
+      {/* RIGHT - Text */}
       <div className="about-right">
-        <h2>About Me</h2>
+        <p className="about-tag">— Who I Am</p>
+        <h2>About <span>Me</span></h2>
 
         <p>
           I am a B.Tech Computer Science and Engineering student at ITM College,
@@ -50,7 +72,25 @@ function About() {
           I am continuously learning new technologies and improving my skills
           to grow as a professional software developer.
         </p>
+
+        <div className="about-highlights">
+          <div className="highlight">
+            <span>⚡</span> Problem Solver
+          </div>
+          <div className="highlight">
+            <span>🚀</span> Fast Learner
+          </div>
+          <div className="highlight">
+            <span>🎯</span> Detail Oriented
+          </div>
+          <div className="highlight">
+            <span>🤝</span> Team Player
+          </div>
+        </div>
+
+        <a href="#contact" className="btn primary">Let's Connect 🤝</a>
       </div>
+
     </section>
   );
 }
